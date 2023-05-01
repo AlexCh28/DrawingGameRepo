@@ -3,15 +3,33 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    private Vector3[] _waypoints;
+
+    private bool _movementFinished;
+
+    public bool MovementFinished => _movementFinished;
+
+
     private void Awake() {
         GetComponentInChildren<LineDraw>().OnDrawingComplete += OnDrawingComplete_Movement;
+        GameManager.singleton.OnAllPlayersReady += OnAllPlayersReady_Movement;
+
+        _movementFinished = false;
     }
 
     private void OnDestroy() {
         GetComponentInChildren<LineDraw>().OnDrawingComplete -= OnDrawingComplete_Movement;
+        GameManager.singleton.OnAllPlayersReady -= OnAllPlayersReady_Movement;
     }
 
     private void OnDrawingComplete_Movement(Vector3[] waypoints){
-        transform.DOPath(waypoints, 5, PathType.Linear, PathMode.TopDown2D);
+        _waypoints = waypoints;
+        Debug.Log(gameObject.name + " path finished " + _waypoints.Length);
+    }
+
+    private void OnAllPlayersReady_Movement(){
+        Debug.Log(gameObject.name + " movement STARTED");
+
+        transform.DOPath(_waypoints, 5, PathType.Linear, PathMode.TopDown2D).OnComplete(() => _movementFinished = true);
     }
 }

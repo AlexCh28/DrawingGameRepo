@@ -11,18 +11,15 @@ public class LineDraw : MonoBehaviour
     private Transform _finish;
     [SerializeField]
     private float _minDistance;
-
     private LineRenderer _line;
-
     private Touch _touch;
-
     private Vector3 _touchWorldPos;
-
     private Vector2 _previousPoint;
-
     private int _vertIndex;
-
+    private bool _isStarted;
     private bool _isFinished;
+
+    public bool IsFinished => _isFinished;
 
     private void Awake() {
         _line = GetComponent<LineRenderer>();
@@ -37,6 +34,15 @@ public class LineDraw : MonoBehaviour
         _touch = Input.GetTouch(0);
         _touchWorldPos = Camera.main.ScreenToWorldPoint(_touch.position);
 
+        RaycastHit2D hit = Physics2D.Raycast(_touchWorldPos, Vector2.zero);
+
+        if(!_isStarted && hit.transform != null && hit.transform == _target)
+        {
+            _isStarted = true;
+        }
+
+        if (!_isStarted) return;
+
         if (Vector2.Distance(new Vector2(_touchWorldPos.x, _touchWorldPos.y), _previousPoint) < _minDistance) return;
 
         _line.positionCount++;
@@ -49,8 +55,9 @@ public class LineDraw : MonoBehaviour
     private void SetDefaultLineOriginOrFinish(){
         RaycastHit2D hit = Physics2D.Raycast(_touchWorldPos, Vector2.zero);
 
-        if(hit.collider != null && hit.collider.tag == "Finish")
+        if(_isStarted && hit.transform != null && hit.transform == _finish)
         {
+            _isStarted = false;
             _isFinished = true;
             
             Vector3[] waypoints = new Vector3[_line.positionCount];
@@ -59,6 +66,7 @@ public class LineDraw : MonoBehaviour
         }
 
         else{
+            _isStarted = false;
             _vertIndex = 1; 
             _line.positionCount = 1;
             _previousPoint = new Vector2(_target.position.x, _target.position.y);
