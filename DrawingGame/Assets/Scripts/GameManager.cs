@@ -1,31 +1,40 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private Levelsnfo _levelsInfo;
+    public static GameManager singleton;
     public event Action OnAllPlayersReady;
 
     private CharacterInfo[] _players;
 
     private bool _testShouldBeStarted;
     private bool _winShouldBe;
-    public static GameManager singleton;
+    private bool _loseShouldBe;
+    public bool LoseShouldBe { get{return _loseShouldBe;} set{_loseShouldBe = value;}}
 
     private void Awake() {
         singleton = this;
 
         _winShouldBe = true;
+        _loseShouldBe = false;
         _testShouldBeStarted = true;
         _players = FindObjectsOfType<CharacterInfo>();
+
+        _levelsInfo.CurrentLevelIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
     private void FixedUpdate() {
         if (_players.Length <= 0) return;
 
-        if (_testShouldBeStarted && CheckAllPathFinished()) {OnAllPlayersReady?.Invoke(); _testShouldBeStarted=false;}
+        if (_testShouldBeStarted && CheckAllPathFinished()) RunTest();
 
-        if (_winShouldBe && CheckAllMovementFinished()) {print("win"); _winShouldBe = false;}
+        if (_winShouldBe && CheckAllMovementFinished()) ActivateWinScene();
+
+        if (_loseShouldBe) ActivateLoseScene();
     }
 
     private bool CheckAllPathFinished(){
@@ -46,5 +55,20 @@ public class GameManager : MonoBehaviour
         }
 
         return result;
+    }
+
+    private void RunTest(){
+        OnAllPlayersReady?.Invoke(); 
+        _testShouldBeStarted=false;
+    }
+
+    private void ActivateWinScene(){ 
+        _winShouldBe = false;
+        SceneManager.LoadScene(0);
+    }
+    private void ActivateLoseScene(){ 
+        _winShouldBe = false;
+        _loseShouldBe = false;
+        SceneManager.LoadScene(1);
     }
 }

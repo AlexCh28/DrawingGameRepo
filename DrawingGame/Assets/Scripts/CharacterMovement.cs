@@ -10,7 +10,7 @@ public class CharacterMovement : MonoBehaviour
     public bool MovementFinished => _movementFinished;
 
 
-    private void Awake() {
+    private void Start() {
         GetComponentInChildren<LineDraw>().OnDrawingComplete += OnDrawingComplete_Movement;
         GameManager.singleton.OnAllPlayersReady += OnAllPlayersReady_Movement;
 
@@ -24,12 +24,9 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnDrawingComplete_Movement(Vector3[] waypoints){
         _waypoints = waypoints;
-        Debug.Log(gameObject.name + " path finished " + _waypoints.Length);
     }
 
     private void OnAllPlayersReady_Movement(){
-        Debug.Log(gameObject.name + " movement STARTED");
-
         transform.DOPath(_waypoints, 5, PathType.Linear, PathMode.TopDown2D).OnComplete(() => _movementFinished = true);
     }
 }
