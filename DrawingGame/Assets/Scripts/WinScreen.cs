@@ -17,7 +17,11 @@ public class WinScreen : MonoBehaviour
         });
         _nextButton.onClick.AddListener(()=>{
             _levelsInfo.CurrentLevelIndex += 1;
-            SceneManager.LoadScene(_levelsInfo.CurrentLevelIndex);
+            
+            if (_levelsInfo.CurrentLevelIndex >= SceneManager.sceneCountInBuildSettings-3) 
+                SceneManager.LoadScene("Placeholder");
+            else
+                SceneManager.LoadScene(_levelsInfo.CurrentLevelIndex);
         });
     }
 }

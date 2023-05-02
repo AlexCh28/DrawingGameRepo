@@ -64,11 +64,11 @@ public class GameManager : MonoBehaviour
 
     private void ActivateWinScene(){ 
         _winShouldBe = false;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("WinScreen");
     }
     private void ActivateLoseScene(){ 
         _winShouldBe = false;
         _loseShouldBe = false;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("LoseScreen");
     }
 }

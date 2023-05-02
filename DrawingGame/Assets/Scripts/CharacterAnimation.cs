@@ -17,7 +17,7 @@ public class CharacterAnimation : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.name.StartsWith("Character")){
+        if (other.gameObject.name.StartsWith("Character") || other.CompareTag("Obstacle")){
             _animator.SetTrigger("Disappear");
         }
     }

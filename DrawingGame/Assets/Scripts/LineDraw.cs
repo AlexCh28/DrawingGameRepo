@@ -55,7 +55,7 @@ public class LineDraw : MonoBehaviour
     private void SetDefaultLineOriginOrFinish(){
         RaycastHit2D hit = Physics2D.Raycast(_touchWorldPos, Vector2.zero);
 
-        if(_isStarted && hit.transform != null && hit.transform == _finish)
+        if(_isStarted && hit.transform != null && (hit.transform == _finish || hit.transform.CompareTag("Universal")))
         {
             _isStarted = false;
             _isFinished = true;
