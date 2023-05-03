@@ -149,7 +149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 167294788}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.39, y: 0, z: 0}
+  m_LocalPosition: {x: -2.28, y: 0, z: 0}
   m_LocalScale: {x: 0.1875, y: 7.7125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -261,7 +261,7 @@ Transform:
   m_GameObject: {fileID: 859253515}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.72, y: 0.61, z: 0}
-  m_LocalScale: {x: 1.4653534, y: 0.17353126, z: 1}
+  m_LocalScale: {x: 1.2089165, y: 0.17353126, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1607290113}
@@ -371,7 +371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1002985401}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.39, y: 0, z: 0}
+  m_LocalPosition: {x: 2.28, y: 0, z: 0}
   m_LocalScale: {x: 0.1875, y: 7.7125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -744,7 +744,7 @@ Transform:
   m_GameObject: {fileID: 1700966550}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.85, y: 0.72, z: 0}
-  m_LocalScale: {x: 1.2471093, y: 0.17353126, z: 1}
+  m_LocalScale: {x: 0.9820986, y: 0.17353126, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1607290113}
@@ -1062,6 +1062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1773c4f3aa32943aac0805c36cadca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerSkinInfo: {fileID: 11400000, guid: 843c4eb85c68a4040925aa24bf18039e, type: 2}
 --- !u!114 &383480422244714821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,7 +1245,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 52c86308b0f56314abec729d7e17b218, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1437,7 +1438,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 155893cec0849f24ba3b3920fcaeb0ae, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1688,6 +1689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1773c4f3aa32943aac0805c36cadca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerSkinInfo: {fileID: 11400000, guid: 4e769efe41b5e4f4e9103d136624d656, type: 2}
 --- !u!1 &3056410906308017830
 GameObject:
   m_ObjectHideFlags: 0

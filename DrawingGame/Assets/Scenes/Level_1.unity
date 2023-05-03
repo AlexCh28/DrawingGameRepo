@@ -176,7 +176,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 155893cec0849f24ba3b3920fcaeb0ae, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -442,6 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1773c4f3aa32943aac0805c36cadca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerSkinInfo: {fileID: 11400000, guid: 843c4eb85c68a4040925aa24bf18039e, type: 2}
 --- !u!50 &313132402
 Rigidbody2D:
   serializedVersion: 4
@@ -805,7 +806,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 52c86308b0f56314abec729d7e17b218, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1304,6 +1305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db1773c4f3aa32943aac0805c36cadca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerSkinInfo: {fileID: 11400000, guid: 4e769efe41b5e4f4e9103d136624d656, type: 2}
 --- !u!50 &1810172667
 Rigidbody2D:
   serializedVersion: 4

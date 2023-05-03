@@ -24,15 +24,24 @@ public class LineDraw : MonoBehaviour
     private void Awake() {
         _line = GetComponent<LineRenderer>();
         SetDefaultLineOriginOrFinish();
+
+        PlayerSkinInfo skinInfo = GetComponentInParent<CharacterInfo>().PlayerSkinInfo;
+        _finish.GetComponent<SpriteRenderer>().color = skinInfo.FinishColor[skinInfo.SkinIndex];
+        _line.startColor = skinInfo.LineColor[skinInfo.SkinIndex];
+        _line.endColor = skinInfo.LineColor[skinInfo.SkinIndex];
     }
 
     private void FixedUpdate() {
         if (_isFinished) return;
 
-        if (Input.touchCount<=0) { SetDefaultLineOriginOrFinish(); return;}
+        if (Input.touchCount<=0 && !Input.GetMouseButton(0)) { SetDefaultLineOriginOrFinish(); return;}
 
-        _touch = Input.GetTouch(0);
-        _touchWorldPos = Camera.main.ScreenToWorldPoint(_touch.position);
+        if (Input.touchCount>0){
+            _touch = Input.GetTouch(0);
+            _touchWorldPos = Camera.main.ScreenToWorldPoint(_touch.position);
+        }
+        else if (Input.GetMouseButton(0))
+            _touchWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         RaycastHit2D hit = Physics2D.Raycast(_touchWorldPos, Vector2.zero);
 
@@ -49,7 +58,7 @@ public class LineDraw : MonoBehaviour
         _line.SetPosition(_vertIndex, new Vector3(_touchWorldPos.x, _touchWorldPos.y, 0));
 
         _vertIndex += 1;
-        _previousPoint = new Vector2(_touchWorldPos.x, _touchWorldPos.y);        
+        _previousPoint = new Vector2(_touchWorldPos.x, _touchWorldPos.y); 
     }
 
     private void SetDefaultLineOriginOrFinish(){
